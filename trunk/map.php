@@ -20,15 +20,23 @@ if(!isset($_GET['type'])){
 if(isset($_GET['from']) && isset($_GET['to'])){
 $head .= '<script type="text/javascript">
 $.post(\'route.php\', {start: "' . $_GET['from'] . '", end: "' . $_GET['to'] . '", type: "' . $type . '"}, function(route){
+	sections = route.sections;
 	var marker = new google.maps.Marker({
 		position: new google.maps.LatLng(route.start.lat, route.start.long), 
 		map: map,
 		title:"Point"
 	});
+	var n = 0;
 	$.each(route.sections, function(i, section){
 		var streets = [new google.maps.LatLng(section.start.lat, section.start.long), new google.maps.LatLng(section.end.lat, section.end.long)];
 		var streetMap = new google.maps.Polyline({path: streets, strokeColor: section.color, strokeOpacity: 0.7, strokeWeight: 4});
 		streetMap.setMap(map);
+		if(route.sections[(n+1)] !== undefined && n == 0){
+			var next = route.sections[(n+1)];
+			$(\'#directions\').append(\'<p>Na \'+section.length+\' meter \'+next.direction+\', \'+next.streetname+\', ondergrond: \'+next.pavement+\'</p>\');
+		}
+		
+		n++;
 	});
 	var marker = new google.maps.Marker({
 		position: new google.maps.LatLng(route.end.lat, route.end.long), 
@@ -43,4 +51,5 @@ $.post(\'route.php\', {start: "' . $_GET['from'] . '", end: "' . $_GET['to'] . '
 }
 ?>
 <div id="map_canvas"></div>
+<div id="directions"></div>
 <div id="calculating">Route aan het berekenen...</div>

@@ -38,7 +38,7 @@ foreach($route->sections as $section){
 	$s['start']['lat'] = $section->start->position->lat;
 	$s['end']['long'] = $section->end->position->long;
 	$s['end']['lat'] = $section->end->position->lat;
-	$s['length'] = Routing::distance($section->start->position, $section->end->position);;
+	$s['length'] = round(Routing::distance($section->start->position, $section->end->position));
 	$s['pavement'] = $section->pavement;
 	$s['streetname'] = $section->street->name;
 	
@@ -59,6 +59,7 @@ foreach($route->sections as $section){
 	}
 	$memory = $b;
 	$bearing = round(Routing::bearing($a, $b));
+	$s['bearing'] = $bearing;
 	if($mb == 0){
 		$mb = $bearing;
 		$s['direction'] = 'Rechtdoor';

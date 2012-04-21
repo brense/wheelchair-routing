@@ -17,6 +17,7 @@ class Map {
 		$html = '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
 	var map;
+	var sections;
 	var markersArray;
 	function initialize(){
 		var mapOptions = {
