@@ -2,17 +2,7 @@ var start_stop_btn, wpid=false, map, z, op, prev_lat, prev_long, min_speed=0, ma
 
 function geoSuccess(position){
 	if(position.coords.accuracy<=min_accuracy){
-		if(prev_lat!=position.coords.latitude || prev_long!=position.coords.longitude){
-			if(position.coords.speed>max_speed){
-				max_speed=position.coords.speed;
-			} else if(position.coords.speed<min_speed){
-				min_speed=position.coords.speed;
-			}
-			if(position.coords.altitude>max_altitude){
-				max_altitude=position.coords.altitude;
-			} else if(position.coords.altitude<min_altitude){
-				min_altitude=position.coords.altitude;
-			}			
+		if(prev_lat!=position.coords.latitude || prev_long!=position.coords.longitude){		
 			prev_lat=position.coords.latitude;
 			prev_long=position.coords.longitude;
 			
