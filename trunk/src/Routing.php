@@ -65,7 +65,7 @@ class Routing {
 		}
 	}
 	
-	private function calculateJunction($junction, $endPoint, &$route, $prevJunction = null){
+	private function calculateJunction($junction, $endPoint, &$route, $prevJunction = null, $adjust = 0){
 		$route->depth++;
 		// determine the bearing from the junction to the end point
 		$bearing = self::bearing($junction->position, $endPoint->position);
@@ -98,9 +98,12 @@ class Routing {
 					$diff = 0;
 				}
 				// adjust the numbers below to narrow the "arc" for allowed connections, you should keep the arc atleast 180 degrees
-				if($diff > 240 || $diff < 120){
+				if($diff > (220 + $adjust) || $diff < (140 - $adjust)){
+					if(($diff > (220 + $adjust) && $diff < (270 + $adjust)) || ($diff < (140 - $adjust) && $diff > (90 - $adjust))){
+						$adjust += 90;
+					}
 					if(!isset($back) || $sectionBearing != $back){
-						$options[] = array('section' => $section, 'junction' => $nextJunction);
+						$options[] = array('section' => $section, 'junction' => $nextJunction, $adjust);
 					}
 				}
 			}
