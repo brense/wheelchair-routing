@@ -100,7 +100,9 @@ class Routing {
 				// adjust the numbers below to narrow the "arc" for allowed connections, you should keep the arc atleast 180 degrees
 				if($diff > (220 + $adjust) || $diff < (140 - $adjust)){
 					if(($diff > (220 + $adjust) && $diff < (270 + $adjust)) || ($diff < (140 - $adjust) && $diff > (90 - $adjust))){
-						$adjust += 90;
+						$adjust += 60;
+					} else {
+						$adjust = 0;
 					}
 					if(!isset($back) || $sectionBearing != $back){
 						$options[] = array('section' => $section, 'junction' => $nextJunction, $adjust);
