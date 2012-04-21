@@ -21,7 +21,7 @@ class Section {
 				$this->_factor = 1.4;
 				break;
 			case 'Slechte kruising':
-				$this->_factor = 5;
+				$this->_factor = 13;
 				break;
 			default:
 				$this->_factor = 1;

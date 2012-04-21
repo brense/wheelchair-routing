@@ -4,6 +4,7 @@ class Route {
 	
 	private $_sections;
 	private $_complete = false;
+	private $_depth = 0;
 	
 	public function __construct(){
 		

@@ -6,7 +6,6 @@ class Routing {
 	private $_end;
 	private $_streets;
 	private $_routes = array();
-	private $_depth = 0;
 	private $_maxDepth;
 	private $_refLength;
 	
@@ -23,7 +22,7 @@ class Routing {
 		
 		// determine the max depth for the routing algorithm (higher depth is slower and can crash the application)
 		$this->_refLength = self::distance($this->_start->position, $this->_end->position);
-		$this->_maxDepth = round(60 / (10000 / $this->_refLength)) + 30;
+		$this->_maxDepth = round(70 / (10000 / $this->_refLength)) + 10;
 		
 		// create a route object and start calculating at the first junction
 		$this->_routes[0] = new Route();
@@ -67,7 +66,7 @@ class Routing {
 	}
 	
 	private function calculateJunction($junction, $endPoint, &$route, $prevJunction = null){
-		$this->_depth++;
+		$route->depth++;
 		// determine the bearing from the junction to the end point
 		$bearing = self::bearing($junction->position, $endPoint->position);
 		if(isset($prevJunction)){
@@ -99,23 +98,21 @@ class Routing {
 					$diff = 0;
 				}
 				// adjust the numbers below to narrow the "arc" for allowed connections, you should keep the arc atleast 180 degrees
-				if($diff > 220 || $diff < 100){
+				if($diff > 240 || $diff < 120){
 					if(!isset($back) || $sectionBearing != $back){
 						$options[] = array('section' => $section, 'junction' => $nextJunction);
 					}
 				}
 			}
 		}
-		$n = 0;
 		// create new routes for all the options
 		foreach($options as $option){
 			$newRoute = clone $route;
 			$this->_routes[] = $newRoute;
 			$newRoute->addSection($option['section']);
-			if($this->_depth < $this->_maxDepth){
+			if($newRoute->depth < $this->_maxDepth){
 				$this->calculateJunction($option['junction'], $endPoint, $newRoute, $junction);
 			}
-			$n++;
 		}
 	}
 	
