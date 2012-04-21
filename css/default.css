@@ -1,4 +1,6 @@
 * { margin:0; padding:0; }
 
 html, body, #map_canvas, #calculating { width:100%; height:100%; }
-#calculating { position:absolute; top:0; left:0; background:#fff; }
+#calculating { position:absolute; top:0; left:0; background:#000; color:#fff; }
+#directions { position:absolute; bottom:30px; left:20%; width:60%; background:#fff; color:#000; overflow:hidden; }
+#directions p { display:block; padding:10px; border:1px solid #000; text-align:center; }
