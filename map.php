@@ -35,6 +35,7 @@ $.post(\'route.php\', {start: "' . $_GET['from'] . '", end: "' . $_GET['to'] . '
 		map: map,
 		title:"Point"
 	});
+	$(\'#calculating\').hide();
 }, \'json\');
 </script>
 <script type="text/javascript" src="js/geo.js"></script>
@@ -42,3 +43,4 @@ $.post(\'route.php\', {start: "' . $_GET['from'] . '", end: "' . $_GET['to'] . '
 }
 ?>
 <div id="map_canvas"></div>
+<div id="calculating">Route aan het berekenen...</div>

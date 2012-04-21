@@ -6,6 +6,7 @@ class Section {
 	private $_end;
 	private $_pavement;
 	private $_factor;
+	private $_street;
 	
 	public function __construct(Junction $start, Junction $end, $pavement = null){
 		$this->_start = $start;

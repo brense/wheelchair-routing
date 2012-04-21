@@ -11,6 +11,7 @@ class Street {
 	
 	public function addSection(Section $section){
 		$this->_sections[] = $section;
+		$section->street = $this;
 	}
 	
 	public function __get($property){

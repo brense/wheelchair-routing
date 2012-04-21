@@ -40,6 +40,7 @@ foreach($route->sections as $section){
 	$s['end']['lat'] = $section->end->position->lat;
 	$s['length'] = Routing::distance($section->start->position, $section->end->position);;
 	$s['pavement'] = $section->pavement;
+	$s['streetname'] = $section->street->name;
 	
 	// section color
 	if($section->factor > 1){
