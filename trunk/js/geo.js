@@ -19,23 +19,6 @@ function getPos(){
 	}
 }
 
-function geoShow(y, x){	
-	if(markersArray){
-		for(i in markersArray){
-			markersArray[i].setMap(null);
-		}
-		markersArray.length = 0;
-	}
-	markersArray.length = 0;
-	var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(y, x), 
-        map: map,
-        title:"Uw locatie"
-    });
-	markersArray.push(marker);
-	map.setCenter(new google.maps.LatLng(y, x));
-}
-
 function initGeo(){
 	if(wpid){
 		navigator.geolocation.clearWatch(wpid);
