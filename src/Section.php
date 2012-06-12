@@ -19,7 +19,7 @@ class Section {
 				$this->_factor = 0.9;
 				break;
 			case 'Keien':
-				$this->_factor = 1.4;
+				$this->_factor = 1.8;
 				break;
 			case 'Slechte kruising':
 				$this->_factor = 13;

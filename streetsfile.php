@@ -22,6 +22,7 @@ $junctions[18] = new Junction(new LatLong(51.9061074, 4.4774982));
 $junctions[19] = new Junction(new LatLong(51.9065381, 4.4784462));
 $junctions[20] = new Junction(new LatLong(51.9071338, 4.4769929)); // calandstraat 7
 $junctions[21] = new Junction(new LatLong(51.9058291, 4.4768590)); // westerkade 14
+$junctions[22] = new Junction(new LatLong(51.907017, 4.476669)); // calandstraat 11
 
 // Parklaan
 $streets[0] = new Street('Parklaan');
@@ -32,7 +33,8 @@ $streets[0]->addSection(new Section($junctions[2], $junctions[3], 'Tegels'));
 // Calandstraat, Veerhaven to Westerlaan
 $streets[1] = new Street('Calandstraat');
 $streets[1]->addSection(new Section($junctions[7], $junctions[20], 'Tegels'));
-$streets[1]->addSection(new Section($junctions[20], $junctions[6], 'Tegels'));
+$streets[1]->addSection(new Section($junctions[20], $junctions[22], 'Tegels'));
+$streets[1]->addSection(new Section($junctions[22], $junctions[6], 'Tegels'));
 $streets[1]->addSection(new Section($junctions[6], $junctions[5], 'Tegels'));
 $streets[1]->addSection(new Section($junctions[5], $junctions[4], 'Tegels'));
 
@@ -75,6 +77,7 @@ $streets[7]->addSection(new Section($junctions[18], $junctions[19], 'Keien'));
 
 // Zeemanstraat
 $streets[8] = new Street('Zeemanstraat');
+$streets[8]->addSection(new Section($junctions[22], $junctions[12], 'Slechte kruising'));
 $streets[8]->addSection(new Section($junctions[12], $junctions[17], 'Tegels'));
 $streets[8]->addSection(new Section($junctions[17], $junctions[18], 'Tegels'));
 
