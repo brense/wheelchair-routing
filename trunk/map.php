@@ -62,7 +62,7 @@ $.post(\'route.php\', {start: "' . $_GET['from'] . '",' . $via . ' end: "' . $_G
 		title:"Point"
 	});
 	*/
-	geoShow(51.907369, 4.477798);
+	//geoShow(51.907369, 4.477798);
 	$(\'#calculating\').hide();
 }, \'json\');
 
