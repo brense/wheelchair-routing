@@ -7,7 +7,11 @@ class Application {
 	private static $_loaded;
 	
 	public function __construct($uri){
-		$this->_uri = $uri;
+     if(substr($uri, -1, 1) == '/'){
+        $this->_uri = substr($uri, 0, -1);
+     } else {
+       $this->_uri = $uri;
+     }
 		$this->_sources[] = str_replace('Application.php', '', __FILE__);
 		spl_autoload_register(array($this, 'autoload'));
 		self::$_loaded[] = get_class($this);
@@ -37,8 +41,8 @@ class Application {
 		ob_start();
 		if($this->_uri == ''){
 			include('home.php');
-		} else if(file_exists(substr($this->_uri, 0, -1) . '.php')){
-			include(substr($this->_uri, 0, -1) . '.php');
+		} else if(file_exists($this->_uri . '.php')){
+			include($this->_uri . '.php');
 		} else {
 			include('404.php');
 		}
